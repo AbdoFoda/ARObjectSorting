@@ -14,12 +14,11 @@ class ViewController: UIViewController {
     
     @IBOutlet var arView: ARView!
     
-    
-    var teapot : Entity?
-    var cup : Entity?
-    
-    var xEps = Float(0.05)
-    var yEps = Float(0.5)
+    var objects = [Entity]()
+    let minDisDiff = Float(0.3)
+    let xSpace = Float(0.5)
+    let ySpace = Float(0.05)
+    let zSpace = Float(0.05)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,33 +29,33 @@ class ViewController: UIViewController {
         arView.scene.addAnchor(horAnchor)
         
         
+        let board = MeshResource.generateBox(width: 1.5, height: 0.040, depth: 0.8)
+        
+        let boardMaterial = SimpleMaterial(color: .white , isMetallic: true)
+        let boardModel = ModelEntity(mesh: board, materials: [boardMaterial])
+        boardModel.position = [0,0,0]
+        
+        horAnchor.addChild(boardModel)
+        
         var cancellable: AnyCancellable? = nil
         
-        cancellable = ModelEntity.loadModelAsync(named: "teapot")
-            .append(ModelEntity.loadModelAsync(named: "cup_saucer_set"))
+        cancellable = ModelEntity.loadModelAsync(named: "1")
+            .append(ModelEntity.loadModelAsync(named: "2"))
+            .append(ModelEntity.loadModelAsync(named: "3"))
             .collect()
             .sink(receiveCompletion: { (error) in
             print(error)
             cancellable?.cancel()
         }, receiveValue: { (entities) in
-            var objects = [ModelEntity] ()
             for (index,entity) in entities.enumerated() {
-                entity.setScale(SIMD3<Float> (0.004,0.004,0.004), relativeTo: horAnchor)
+                entity.setScale(SIMD3<Float> (0.006,0.006,0.006), relativeTo: boardModel)
                 entity.generateCollisionShapes(recursive: true)
-                entity.position = [Float( index % 2) * 0.5,Float( index % 2) * 0.5,0.1]
-                objects.append(entity)
-                horAnchor.addChild(entity)
+                entity.position = [-0.5 + (Float( index) * 0.5)  ,0,0]
+                self.objects.append(entity)
+                boardModel.addChild(entity)
             }
+            swap(&self.objects[0].position,&self.objects[2].position)
             
-            
-            self.teapot = objects[0]
-            self.cup = objects[1]
-            
-            
-//            entity.setScale(SIMD3<Float> (0.004,0.004,0.004), relativeTo: horAnchor)
-//            entity.generateCollisionShapes(recursive: true)
-//            entity.position = [0.1,0,0.1]
-//            horAnchor.addChild(entity)
         })
         
         
@@ -64,19 +63,31 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.alertWith(title: "تحدي", message: "تعرف تصب الشاي؟؟!")
+        self.alertWith(title: "تحدي", message: "رتب الأختراعات علي حسب تاريخها")
         
     }
     
     
     var selectedObject : Entity?
-    
     func checkIfWin() -> Bool {
-        guard let teapot = self.teapot , let cup = self.cup else {
+        guard self.objects.count > 1 else {
             return false
         }
-        return (cup.position.x - teapot.position.x <= xEps) && (cup.position.x - teapot.position.x >= 0)
-        &&  (teapot.position.y - cup.position.y <= yEps) && (teapot.position.y - cup.position.y >= 0)
+        for idx in 1..<objects.count{
+            let obj = objects[idx] , prevObj = objects[idx-1]
+            let xDiff =  obj.position.x - prevObj.position.x
+            let yDiff =  obj.position.y - prevObj.position.y
+            let zDiff =  obj.position.z - prevObj.position.z
+            print("X Diff\(idx)= \(xDiff)")
+            print("Y Diff\(idx) = \(yDiff)")
+            print("Z Diff\(idx) = \(zDiff)")
+
+            if      xDiff < minDisDiff || xDiff > xSpace || abs(zDiff) > zDiff  {
+                return false
+            }
+        }
+        return true
+        
     }
     @IBAction func handlePan(_ panGesture: UIPanGestureRecognizer) {
         let panLocation = panGesture.location(in: arView)
@@ -92,13 +103,11 @@ class ViewController: UIViewController {
             if let object = selectedObject {
                 print("object should move!")
                 object.position.x += Float(translation.x * 0.0001)
-                object.position.y -= Float(translation.y * 0.0001)
+                object.position.z += Float(translation.y * 0.0001)
                 panGesture.reset()
             }
-            print(teapot?.position)
-            print(cup?.position)
             if checkIfWin() {
-                self.alertWith(title: "مبروك", message: "صبيت الشاااي!")
+                self.alertWith(title: "مبروك", message: "كسبت ٥٠٠ ميجا بايت من أورانج ان شاء الله")
             }
         case .ended:
             self.selectedObject = nil

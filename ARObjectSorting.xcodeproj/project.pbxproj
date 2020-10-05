@@ -11,6 +11,9 @@
 		2BA2A5FC2525079600DAAF18 /* UIViewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA2A5FB2525079600DAAF18 /* UIViewUtilities.swift */; };
 		2BA2A5FE2525098500DAAF18 /* teapot.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2BA2A5FD2525098500DAAF18 /* teapot.usdz */; };
 		2BA2A6002525099E00DAAF18 /* cup_saucer_set.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2BA2A5FF2525099E00DAAF18 /* cup_saucer_set.usdz */; };
+		2BD6F18A252BB3320029AF85 /* 1.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2BD6F187252BB3310029AF85 /* 1.usdz */; };
+		2BD6F18B252BB3320029AF85 /* 2.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2BD6F188252BB3320029AF85 /* 2.usdz */; };
+		2BD6F18C252BB3320029AF85 /* 3.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2BD6F189252BB3320029AF85 /* 3.usdz */; };
 		2BEF36892524F36700937823 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF36882524F36700937823 /* AppDelegate.swift */; };
 		2BEF368B2524F36700937823 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF368A2524F36700937823 /* ViewController.swift */; };
 		2BEF368D2524F36700937823 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 2BEF368C2524F36700937823 /* Experience.rcproject */; };
@@ -24,6 +27,9 @@
 		2BA2A5FB2525079600DAAF18 /* UIViewUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewUtilities.swift; sourceTree = "<group>"; };
 		2BA2A5FD2525098500DAAF18 /* teapot.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = teapot.usdz; sourceTree = "<group>"; };
 		2BA2A5FF2525099E00DAAF18 /* cup_saucer_set.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = cup_saucer_set.usdz; sourceTree = "<group>"; };
+		2BD6F187252BB3310029AF85 /* 1.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = 1.usdz; sourceTree = "<group>"; };
+		2BD6F188252BB3320029AF85 /* 2.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = 2.usdz; sourceTree = "<group>"; };
+		2BD6F189252BB3320029AF85 /* 3.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = 3.usdz; sourceTree = "<group>"; };
 		2BEF36852524F36700937823 /* ARObjectSorting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARObjectSorting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BEF36882524F36700937823 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BEF368A2524F36700937823 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +78,9 @@
 				2BEF36912524F36900937823 /* Assets.xcassets */,
 				2BEF36932524F36900937823 /* LaunchScreen.storyboard */,
 				2BEF36962524F36900937823 /* Info.plist */,
+				2BD6F187252BB3310029AF85 /* 1.usdz */,
+				2BD6F188252BB3320029AF85 /* 2.usdz */,
+				2BD6F189252BB3320029AF85 /* 3.usdz */,
 				2BA2A5FD2525098500DAAF18 /* teapot.usdz */,
 				2BA2A5FF2525099E00DAAF18 /* cup_saucer_set.usdz */,
 				2BA2A5FB2525079600DAAF18 /* UIViewUtilities.swift */,
@@ -139,8 +148,11 @@
 			files = (
 				2BEF36952524F36900937823 /* LaunchScreen.storyboard in Resources */,
 				2BEF36922524F36900937823 /* Assets.xcassets in Resources */,
+				2BD6F18A252BB3320029AF85 /* 1.usdz in Resources */,
 				2BA2A6002525099E00DAAF18 /* cup_saucer_set.usdz in Resources */,
+				2BD6F18B252BB3320029AF85 /* 2.usdz in Resources */,
 				2BA2A5FA2524FACB00DAAF18 /* toy_biplane.usdz in Resources */,
+				2BD6F18C252BB3320029AF85 /* 3.usdz in Resources */,
 				2BEF36902524F36700937823 /* Main.storyboard in Resources */,
 				2BA2A5FE2525098500DAAF18 /* teapot.usdz in Resources */,
 			);
