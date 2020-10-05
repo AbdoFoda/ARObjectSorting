@@ -82,7 +82,7 @@ class ViewController: UIViewController {
             print("Y Diff\(idx) = \(yDiff)")
             print("Z Diff\(idx) = \(zDiff)")
 
-            if      xDiff < minDisDiff || xDiff > xSpace || abs(zDiff) > zDiff  {
+            if      xDiff < minDisDiff || xDiff > xSpace || abs(zDiff) > zSpace  {
                 return false
             }
         }
